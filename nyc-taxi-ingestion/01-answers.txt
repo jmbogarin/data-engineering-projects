@@ -1,8 +1,0 @@
-01-docker-terraform
-
-1) 25.3
-2) db:5432
-3) 8007
-4) 2025-11-14
-5) East Harlem North
-6) Yorkville West
