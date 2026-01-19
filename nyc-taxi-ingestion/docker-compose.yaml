@@ -1,0 +1,39 @@
+services:
+  pgdatabase:
+    image: postgres:17-alpine
+    container_name: pgdatabase
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ny_taxi
+    ports:
+      - "5433:5432"   # host:container
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+  ingest:
+    build: .
+    container_name: ingest
+    environment:
+      DB_HOST: pgdatabase
+      DB_PORT: "5432"
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_NAME: ny_taxi
+    depends_on:
+      - pgdatabase
+
+volumes:
+  pgdata:
+  pgadmin_data:
