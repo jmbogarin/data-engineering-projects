@@ -1,0 +1,5 @@
+SELECT COUNT(*) FROM kestra-taxi-warehouse.zoomcamp.green_tripdata WHERE filename LIKE "%2020%"
+
+SELECT COUNT(*) FROM kestra-taxi-warehouse.zoomcamp.yellow_tripdata WHERE filename LIKE "%2020%"
+
+SELECT COUNT(*) FROM kestra-taxi-warehouse.zoomcamp.yellow_tripdata_2021_03
