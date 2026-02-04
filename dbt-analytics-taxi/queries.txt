@@ -1,0 +1,38 @@
+SELECT COUNT(*)
+FROM `yellow-taxi-datawarehouse.hw.yellow_taxi_materialized_table`
+
+SELECT COUNT(DISTINCT PULocationID)
+FROM `yellow-taxi-datawarehouse.hw.yellow_taxi_external_table`;
+
+SELECT COUNT(DISTINCT PULocationID)
+FROM `yellow-taxi-datawarehouse.hw.yellow_taxi_materialized_table`;
+
+SELECT PULocationID
+FROM `yellow-taxi-datawarehouse.hw.yellow_taxi_materialized_table`;
+
+SELECT PULocationID, DOLocationID
+FROM `yellow-taxi-datawarehouse.hw.yellow_taxi_materialized_table`;
+
+SELECT COUNT(*)
+FROM `yellow-taxi-datawarehouse.hw.yellow_taxi_materialized_table`
+WHERE fare_amount = 0;
+
+CREATE OR REPLACE TABLE `yellow-taxi-datawarehouse.hw.yellow_taxi_optimized_table`
+PARTITION BY DATE(tpep_dropoff_datetime)
+CLUSTER BY VendorID
+AS
+SELECT *
+FROM `yellow-taxi-datawarehouse.hw.yellow_taxi_materialized_table`
+
+SELECT DISTINCT VendorID
+FROM `yellow-taxi-datawarehouse.hw.yellow_taxi_materialized_table`
+WHERE tpep_dropoff_datetime >= '2024-03-01'
+AND tpep_dropoff_datetime <= '2024-03-15';
+
+SELECT DISTINCT VendorID
+FROM `yellow-taxi-datawarehouse.hw.yellow_taxi_optimized_table`
+WHERE tpep_dropoff_datetime >= '2024-03-01'
+AND tpep_dropoff_datetime <= '2024-03-15';
+
+SELECT COUNT (*)
+FROM `yellow-taxi-datawarehouse.hw.yellow_taxi_materialized_table`
