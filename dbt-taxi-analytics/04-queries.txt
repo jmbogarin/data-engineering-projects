@@ -1,0 +1,21 @@
+3)
+SELECT COUNT(*) FROM `analytics-taxi.taxi_data_prod.fct_monthly_zone_revenue` 
+
+4)
+SELECT pickup_zone, SUM(revenue_monthly_total_amount) AS total_revenue
+FROM `analytics-taxi.taxi_data_prod.fct_monthly_zone_revenue`
+WHERE service_type = 'Green' AND EXTRACT(YEAR FROM revenue_month) = 2020
+GROUP BY pickup_zone
+ORDER BY total_revenue DESC
+LIMIT 1
+
+5)
+SELECT
+  SUM(total_monthly_trips) AS total_trips
+FROM `analytics-taxi.taxi_data_prod.fct_monthly_zone_revenue`
+WHERE service_type = 'Green'
+  AND EXTRACT(YEAR FROM revenue_month) = 2019
+  AND EXTRACT(MONTH FROM revenue_month) = 10
+
+6)
+SELECT count(*) FROM `analytics-taxi.taxi_data.external_fhv` 
