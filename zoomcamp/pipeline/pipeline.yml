@@ -1,0 +1,18 @@
+name: nyc-taxi
+schedule: "daily"
+start_date: "2022-01-01"
+
+default_connections:
+  duckdb: TODO_CONNECTION_NAME
+
+# TODO: Define pipeline variables using JSON Schema and defaults.
+# - Variables must have a `default` so assets can render without `--var`.
+# - In SQL/YAML assets: reference as `{{ var.my_variable }}`.
+# - In Python assets: read JSON from env var `BRUIN_VARS`.
+variables:
+  taxi_types:
+    type: array
+    items:
+      type: string
+    default: ["yellow"]
+
