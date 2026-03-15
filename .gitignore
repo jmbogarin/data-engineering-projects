@@ -209,3 +209,5 @@ data-orchestration-kestra/flows
 .bruin.yml
 
 yellow_tripdata_2025-11-repartitioned
+
+*.parquet
